@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微积分之旅：定积分与不定积分的故事</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax 用于渲染数学公式 -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- 时间线插件 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timelinejs/3.8.18/css/timeline.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-calculator me-2"></i>微积分之旅
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#overview"><i class="fas fa-home"></i> 概述</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#concepts"><i class="fas fa-brain"></i> 概念辨析</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#formulas"><i class="fas fa-square-root-alt"></i> 公式宝典</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#history"><i class="fas fa-history"></i> 历史长廊</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#thinking"><i class="fas fa-lightbulb"></i> 思维启迪</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#ai-chat"><i class="fas fa-robot"></i> AI助手</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main>
+        <!-- 概述部分 -->
+        <section id="overview" class="section-hero">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="hero-title">探索积分的世界</h1>
+                        <p class="hero-subtitle">牛顿与莱布尼茨的世纪之争</p>
+                        <p class="hero-text">
+                            微积分是数学史上最伟大的成就之一，而定积分与不定积分的概念则是其核心。本交互式学习平台将带你穿越时空，了解这段激动人心的历史，掌握积分的核心概念，并通过AI助手解答你的疑问。
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#ai-chat" class="btn btn-primary btn-lg me-3"><i class="fas fa-comment"></i> 开始提问</a>
+                            <a href="#history" class="btn btn-outline-light btn-lg"><i class="fas fa-book-open"></i> 了解历史</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hero-image">
+                            <div class="math-symbols">
+                                <div class="symbol integral">∫</div>
+                                <div class="symbol infinity">∞</div>
+                                <div class="symbol pi">π</div>
+                                <div class="symbol limit">lim</div>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="微积分背景" class="img-fluid rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 概念辨析部分 -->
+        <section id="concepts" class="section-content">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-brain"></i> 概念辨析</h2>
+                <p class="section-subtitle">理解定积分与不定积分的本质区别与联系</p>
+                
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="concept-card">
+                            <div class="concept-header bg-primary">
+                                <h3><i class="fas fa-infinity"></i> 不定积分</h3>
+                            </div>
+                            <div class="concept-body">
+                                <div class="concept-definition">
+                                    <h4>定义</h4>
+                                    <p>如果函数\(F(x)\)的导数是\(f(x)\)，即\(F'(x) = f(x)\)，那么\(F(x)\)就是\(f(x)\)的一个原函数。函数\(f(x)\)的所有原函数的集合称为\(f(x)\)的<strong>不定积分</strong>，记作：</p>
+                                    <div class="math-display">
+                                        \[ \int f(x) \, dx = F(x) + C \]
+                                    </div>
+                                    <p>其中\(C\)是任意常数，称为积分常数。</p>
+                                </div>
+                                <div class="concept-geometry mt-4">
+                                    <h4>几何意义</h4>
+                                    <p>不定积分表示一族函数曲线，这些曲线在每一点处都有相同的切线斜率。</p>
+                                    <div class="geometry-visual" id="indefinite-visual">
+                                        <!-- 这里将用JS绘制不定积分的几何意义 -->
+                                        <canvas id="indefinite-canvas" width="400" height="200"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 mb-4">
+                        <div class="concept-card">
+                            <div class="concept-header bg-success">
+                                <h3><i class="fas fa-chart-area"></i> 定积分</h3>
+                            </div>
+                            <div class="concept-body">
+                                <div class="concept-definition">
+                                    <h4>定义</h4>
+                                    <p>设函数\(f(x)\)在区间\([a, b]\)上有定义，将区间分割为\(n\)个小区间，在每一个小区间上任取一点\(\xi_i\)，作和式：</p>
+                                    <div class="math-display">
+                                        \[ \sum_{i=1}^{n} f(\xi_i) \Delta x_i \]
+                                    </div>
+                                    <p>当分割无限加细时，如果这个和式的极限存在，则称此极限为函数\(f(x)\)在区间\([a, b]\)上的<strong>定积分</strong>，记作：</p>
+                                    <div class="math-display">
+                                        \[ \int_{a}^{b} f(x) \, dx \]
+                                    </div>
+                                </div>
+                                <div class="concept-geometry mt-4">
+                                    <h4>几何意义</h4>
+                                    <p>当\(f(x) \geq 0\)时，定积分表示由曲线\(y = f(x)\)，直线\(x = a\)，\(x = b\)和x轴所围成的曲边梯形的面积。</p>
+                                    <div class="geometry-visual" id="definite-visual">
+                                        <!-- 这里将用JS绘制定积分的几何意义 -->
+                                        <canvas id="definite-canvas" width="400" height="200"></canvas>
+                                        <div class="controls mt-3">
+                                            <label for="function-input">函数: </label>
+                                            <input type="text" id="function-input" value="x^2" class="form-control-sm">
+                                            <label for="lower-limit" class="ms-2">下限: </label>
+                                            <input type="number" id="lower-limit" value="0" step="0.5" class="form-control-sm" style="width: 70px;">
+                                            <label for="upper-limit" class="ms-2">上限: </label>
+                                            <input type="number" id="upper-limit" value="2" step="0.5" class="form-control-sm" style="width: 70px;">
+                                            <button id="update-graph" class="btn btn-sm btn-primary ms-2">更新</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="connection-card">
+                    <div class="connection-header">
+                        <h3><i class="fas fa-link"></i> 联系：微积分基本定理</h3>
+                    </div>
+                    <div class="connection-body">
+                        <p>微积分基本定理建立了定积分与不定积分之间的联系：</p>
+                        <div class="theorem-display">
+                            <div class="theorem">
+                                <h4>第一基本定理</h4>
+                                <p>如果函数\(f(x)\)在区间\([a, b]\)上连续，那么函数</p>
+                                \[ F(x) = \int_{a}^{x} f(t) \, dt \]
+                                <p>在\([a, b]\)上可导，并且\(F'(x) = f(x)\)。</p>
+                            </div>
+                            <div class="theorem">
+                                <h4>第二基本定理</h4>
+                                <p>如果函数\(f(x)\)在区间\([a, b]\)上连续，且\(F(x)\)是\(f(x)\)的一个原函数，那么</p>
+                                \[ \int_{a}^{b} f(x) \, dx = F(b) - F(a) \]
+                            </div>
+                        </div>
+                        <div class="animation-container mt-4">
+                            <div class="animation-visual" id="fundamental-visual">
+                                <!-- 这里将用动画展示微积分基本定理 -->
+                                <div class="animation-placeholder">
+                                    <p>点击按钮查看微积分基本定理的动画演示</p>
+                                    <button id="show-animation" class="btn btn-primary">播放动画</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 公式宝典部分 -->
+        <section id="formulas" class="section-content bg-light">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-square-root-alt"></i> 公式宝典</h2>
+                <p class="section-subtitle">常用积分公式与计算方法</p>
+                
+                <div class="row">
+                    <div class="col-lg-4 mb-4">
+                        <div class="formula-card">
+                            <div class="formula-header">
+                                <h4><i class="fas fa-list-ol"></i> 基本积分公式</h4>
+                            </div>
+                            <div class="formula-body">
+                                <ul class="formula-list">
+                                    <li>\(\int k \, dx = kx + C\)</li>
+                                    <li>\(\int x^n \, dx = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1)\)</li>
+                                    <li>\(\int \frac{1}{x} \, dx = \ln|x| + C\)</li>
+                                    <li>\(\int e^x \, dx = e^x + C\)</li>
+                                    <li>\(\int a^x \, dx = \frac{a^x}{\ln a} + C\)</li>
+                                    <li>\(\int \sin x \, dx = -\cos x + C\)</li>
+                                    <li>\(\int \cos x \, dx = \sin x + C\)</li>
+                                    <li>\(\int \sec^2 x \, dx = \tan x + C\)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 mb-4">
+                        <div class="formula-card">
+                            <div class="formula-header">
+                                <h4><i class="fas fa-exchange-alt"></i> 积分方法</h4>
+                            </div>
+                            <div class="formula-body">
+                                <div class="method">
+                                    <h5>换元积分法</h5>
+                                    <p>设\(u = g(x)\)可微，\(f(u)\)连续，则：</p>
+                                    \[ \int f(g(x))g'(x) \, dx = \int f(u) \, du \]
+                                </div>
+                                <div class="method mt-3">
+                                    <h5>分部积分法</h5>
+                                    <p>设\(u = u(x)\)，\(v = v(x)\)可微，则：</p>
+                                    \[ \int u \, dv = uv - \int v \, du \]
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 mb-4">
+                        <div class="formula-card">
+                            <div class="formula-header">
+                                <h4><i class="fas fa-calculator"></i> 积分计算器</h4>
+                            </div>
+                            <div class="formula-body">
+                                <div class="calculator">
+                                    <div class="mb-3">
+                                        <label for="integral-input" class="form-label">输入要计算的积分：</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">∫</span>
+                                            <input type="text" class="form-control" id="integral-input" placeholder="例如: x^2 dx">
+                                            <button class="btn btn-primary" id="calculate-integral">计算</button>
+                                        </div>
+                                        <small class="form-text text-muted">支持基本函数如 sin(x), cos(x), e^x, ln(x)等</small>
+                                    </div>
+                                    <div class="result-display">
+                                        <h5>结果：</h5>
+                                        <div id="integral-result" class="math-display">等待输入...</div>
+                                        <div id="step-by-step" class="mt-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 历史长廊部分 -->
+        <section id="history" class="section-content">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-history"></i> 历史长廊</h2>
+                <p class="section-subtitle">从穷竭法到微积分：一段激动人心的旅程</p>
+                
+                <div class="timeline-container">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">约公元前250年</div>
+                            <div class="timeline-content">
+                                <h4>阿基米德的穷竭法</h4>
+                                <p>古希腊数学家阿基米德使用"穷竭法"计算抛物弓形面积，这是积分思想的早期萌芽。</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">17世纪</div>
+                            <div class="timeline-content">
+                                <h4>开普勒与卡瓦列里</h4>
+                                <p>开普勒在《葡萄酒桶的立体几何》中研究旋转体体积，卡瓦列里提出"不可分量原理"。</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">1665-1666年</div>
+                            <div class="timeline-content">
+                                <h4>牛顿创立"流数术"</h4>
+                                <p>牛顿在躲避瘟疫期间发展出"流数术"，用无穷小量研究变化率，奠定了微积分的基础。</p>
+                                <div class="historical-figure">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/GodfreyKneller-IsaacNewton-1689.jpg/150px-GodfreyKneller-IsaacNewton-1689.jpg" alt="牛顿">
+                                    <p class="figure-caption">艾萨克·牛顿 (1643-1727)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">1675-1676年</div>
+                            <div class="timeline-content">
+                                <h4>莱布尼茨发明微积分符号</h4>
+                                <p>莱布尼茨独立发展出微积分，并发明了沿用至今的积分符号"∫"和微分符号"d"。</p>
+                                <div class="historical-figure">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Gottfried_Wilhelm_von_Leibniz.jpg/150px-Gottfried_Wilhelm_von_Leibniz.jpg" alt="莱布尼茨">
+                                    <p class="figure-caption">戈特弗里德·威廉·莱布尼茨 (1646-1716)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">1690-1700年</div>
+                            <div class="timeline-content">
+                                <h4>微积分优先权之争</h4>
+                                <p>牛顿与莱布尼茨的支持者就微积分的发明权展开激烈争论，影响了数学界数十年的发展。</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">19世纪</div>
+                            <div class="timeline-content">
+                                <h4>柯西与黎曼的严格化</h4>
+                                <p>柯西、黎曼等数学家为微积分奠定严格的理论基础，定义了极限、连续性和积分等概念。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="history-quiz mt-5">
+                    <h3 class="text-center mb-4"><i class="fas fa-question-circle"></i> 历史知识小测试</h3>
+                    <div class="quiz-container">
+                        <div id="quiz-question" class="quiz-question">
+                            <p>谁发明了沿用至今的积分符号"∫"？</p>
+                        </div>
+                        <div class="quiz-options">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn btn-outline-primary btn-option" data-correct="false">牛顿</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-outline-primary btn-option" data-correct="true">莱布尼茨</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-outline-primary btn-option" data-correct="false">阿基米德</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-outline-primary btn-option" data-correct="false">柯西</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="quiz-feedback" class="quiz-feedback mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 思维启迪部分 -->
+        <section id="thinking" class="section-content bg-light">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-lightbulb"></i> 思维启迪</h2>
+                <p class="section-subtitle">积分思想的应用与创新思考</p>
+                
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="thinking-card">
+                            <div class="thinking-header">
+                                <h4><i class="fas fa-globe-americas"></i> 积分在现实世界的应用</h4>
+                            </div>
+                            <div class="thinking-body">
+                                <ul>
+                                    <li><strong>物理学</strong>：计算物体的质心、转动惯量、功和能量</li>
+                                    <li><strong>工程学</strong>：计算曲线的长度、曲面的面积、旋转体的体积</li>
+                                    <li><strong>经济学</strong>：计算总收益、总成本、消费者剩余和生产者剩余</li>
+                                    <li><strong>生物学</strong>：计算种群增长、药物在体内的浓度随时间的变化</li>
+                                    <li><strong>统计学</strong>：计算概率密度函数下的面积（概率）</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 mb-4">
+                        <div class="thinking-card">
+                            <div class="thinking-header">
+                                <h4><i class="fas fa-question"></i> 开放性问题</h4>
+                            </div>
+                            <div class="thinking-body">
+                                <div class="question-list">
+                                    <div class="question-item">
+                                        <h5>如果没有微积分，现代科学会怎样？</h5>
+                                        <p>思考微积分对物理学、工程学和其他科学领域的影响。</p>
+                                    </div>
+                                    <div class="question-item">
+                                        <h5>积分思想在生活中有什么体现？</h5>
+                                        <p>想想看，累计、求和、累积效应等概念如何体现在日常生活中？</p>
+                                    </div>
+                                    <div class="question-item">
+                                        <h5>牛顿和莱布尼茨的方法有什么本质不同？</h5>
+                                        <p>比较牛顿的"流数术"和莱布尼茨的符号体系，思考哪种方法对数学发展影响更大？</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="application-examples mt-5">
+                    <h3 class="text-center mb-4">积分应用实例</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="app-card">
+                                <div class="app-icon">
+                                    <i class="fas fa-satellite"></i>
+                                </div>
+                                <h5>航天工程</h5>
+                                <p>计算火箭燃料消耗、轨道变化和重力影响需要使用积分。</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="app-card">
+                                <div class="app-icon">
+                                    <i class="fas fa-heartbeat"></i>
+                                </div>
+                                <h5>医学成像</h5>
+                                <p>CT扫描和MRI图像重建中大量使用积分变换。</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="app-card">
+                                <div class="app-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h5>金融建模</h5>
+                                <p>期权定价模型（如Black-Scholes模型）依赖于随机积分。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI助手部分 -->
+        <section id="ai-chat" class="section-content">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-robot"></i> AI微积分助手</h2>
+                <p class="section-subtitle">有任何关于微积分的问题，都可以问我！</p>
+                
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="chat-container">
+                            <div class="chat-header">
+                                <h4><i class="fas fa-comments"></i> 微积分助手</h4>
+                                <div class="chat-status">
+                                    <span class="status-indicator"></span>
+                                    <span>在线</span>
+                                </div>
+                            </div>
+                            <div class="chat-messages" id="chat-messages">
+                                <div class="message ai-message">
+                                    <div class="message-avatar">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <div class="message-content">
+                                        <div class="message-sender">微积分助手</div>
+                                        <div class="message-text">
+    你好！我是微积分学习助手，我可以帮助你：
+    <ul>
+        <li>解释微积分概念和定理</li>
+        <li>解答积分计算问题</li>
+        <li>讲述微积分历史故事</li>
+        <li>提供学习建议和方法</li>
+    </ul>
+    你可以直接输入问题，或者点击下面的快捷提问按钮。<br>
+    示例超链接：<a href="https://www.khanacademy.org/math/calculus-1" target="_blank">访问可汗学院微积分课程</a>
+</div>
+                                        <div class="message-time">现在</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-input">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="user-input" placeholder="输入你的微积分问题...">
+                                    <button class="btn btn-primary" id="send-message">发送</button>
+                                </div>
+                                <div class="quick-questions mt-3">
+                                    <h6>快捷提问：</h6>
+                                    <div class="quick-buttons">
+                                        <button class="btn btn-sm btn-outline-primary quick-question">什么是不定积分？</button>
+                                        <button class="btn btn-sm btn-outline-primary quick-question">计算∫x²dx</button>
+                                        <button class="btn btn-sm btn-outline-primary quick-question">微积分基本定理是什么？</button>
+                                        <button class="btn btn-sm btn-outline-primary quick-question">牛顿和莱布尼茨的贡献</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="ai-info-card">
+                            <div class="ai-info-header">
+                                <h4><i class="fas fa-info-circle"></i> 助手信息</h4>
+                            </div>
+                            <div class="ai-info-body">
+                                <div class="ai-avatar">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <h5 class="mt-3">微积分专家</h5>
+                                <p>我专注于微积分教学，特别是定积分与不定积分的概念、计算和历史。</p>
+                                
+                                <div class="ai-capabilities mt-4">
+                                    <h6><i class="fas fa-check-circle"></i> 我能做什么：</h6>
+                                    <ul>
+                                        <li>解释数学概念和定义</li>
+                                        <li>演示计算步骤</li>
+                                        <li>提供可视化示例</li>
+                                        <li>讲述历史背景故事</li>
+                                        <li>解答学习困惑</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="ai-tips mt-4">
+                                    <h6><i class="fas fa-lightbulb"></i> 提问小贴士：</h6>
+                                    <ul>
+                                        <li>尽量具体描述你的问题</li>
+                                        <li>可以输入数学表达式，如 "∫ sin(x) dx"</li>
+                                        <li>可以问历史问题，如 "谁发明了积分符号？"</li>
+                                        <li>可以请求分步解答</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h5><i class="fas fa-calculator"></i> 微积分之旅</h5>
+                    <p>一个交互式微积分学习平台，专注于定积分与不定积分的学习与应用。</p>
+                </div>
+                <div class="col-lg-4">
+    <h5>相关资源</h5>
+    <ul class="footer-links">
+        <li><a href="https://www.khanacademy.org/math/calculus-1" target="_blank">可汗学院微积分课程</a></li>
+        <li><a href="https://www.desmos.com/calculator" target="_blank">Desmos图形计算器</a></li>
+        <li><a href="https://www.wolframalpha.com/" target="_blank">Wolfram Alpha计算引擎</a></li>
+        <li><a href="https://www.mathway.com/Calculus" target="_blank">Mathway微积分计算器</a></li>
+        <li><a href="https://ocw.mit.edu/courses/mathematics/18-01sc-single-variable-calculus-fall-2010/" target="_blank">MIT开放课程：单变量微积分</a></li>
+    </ul>
+</div>
+                <div class="col-lg-4">
+                    <h5>原创声明</h5>
+                    <p>本网站由学习小组原创开发，部分历史图片来自维基百科，数学公式使用MathJax渲染，AI助手基于模拟算法实现。</p>
+                    <p class="copyright">© 2023 微积分学习小组. 保留所有权利。</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 脚本文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="math-ai.js"></script>
+</body>
+</html>
